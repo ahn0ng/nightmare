@@ -50,7 +50,7 @@ console.log(imgs);
 
 const playSound = (sound) => { sound.play(); }
 const numSounds = 4;
-const sounds = Array.from({ length: numSounds}, (e, i) => new Howl({ src: `audios/${i}.mp3`, html5: false, volume: 0.5, loop: false }));
+const sounds = Array.from({ length: numSounds}, (e, i) => new Howl({ src: `sounds/${i}.mp3`, html5: false, volume: 0.5, loop: false }));
 const getRandomColor = () => `#${Math.floor(Math.random()*16777215).toString(16)}`; 
 const colors = Array.from({ length: numSounds }, () => getRandomColor() );
 console.log(colors);
