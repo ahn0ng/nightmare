@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+ <style>
+        body {
+            background-image: url('bg/bg.jpg');
+            background-size: cover;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            width: 100px;
+            height: 100px;
+            margin: 15px 15px;
+        }
+
+        .button:hover {
+            background-color: darkgray;
+        }
+
+    </style>
+
+    <script src="libs/howler.js"></script>
+  
+    <title>Nightmare</title>
+</head>
+<body>
+    
+   
+    <div class="container">
+        
+    </div> 
+   
+
+</body>
+<script>
+   const numImgs = 4;
+const imgPaths = Array.from({ length: numImgs });
+imgPaths.forEach((e,i) => { imgPaths[i]=`images/${i}.jpg`;});
+const makeImg = () => document.createElement('images');
+const imgs = Array.from({ length: numImgs }, ()=>makeImg());
+console.log(imgs);
+
+const playSound = (sound) => { sound.play(); }
+const numSounds = 4;
+const sounds = Array.from({ length: numSounds}, (e, i) => new Howl({ src: `audios/${i}.mp3`, html5: false, volume: 0.5, loop: false }));
+const getRandomColor = () => `#${Math.floor(Math.random()*16777215).toString(16)}`; 
+const colors = Array.from({ length: numSounds }, () => getRandomColor() );
+console.log(colors);
+
+const images = [];
+images[0]="url(images/0.png)";
+images[1]="url(images/1.png)";
+images[2]="url(images/2.png)";
+images[3]="url(images/3.png)";
+
+
+const container = document.querySelector('.container');
+const numButtons = numSounds;
+const makeDiv = (index) => {
+    div = document.createElement('div');
+    div.className='button';
+    div.style.backgroundImage=images[index];
+    return div
+    };
+            
+
+const buttons = Array.from({ length: numButtons}, (element, index) => makeDiv(index));
+console.log(buttons);
+buttons.forEach(button => container.appendChild(button));
+
+buttons.forEach( (button, index) => {
+    button.addEventListener('click', () => {
+        playSound(sounds[index])
+    })
+})
+
+    </script>
+</html>
